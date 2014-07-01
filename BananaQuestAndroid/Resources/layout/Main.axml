@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7">
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar"
+            android:indeterminate="true"
+            android:indeterminateOnly="true"
+            android:visibility="visible" />
+        <ImageView
+            android:src="@android:drawable/ic_menu_gallery"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/main_image"
+            android:layout_margin="8dp" />
+        <TextView
+            android:text="Clues!"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/main_text"
+            android:layout_margin="8dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="0dp"
+        android:layout_weight="3">
+        <ImageView
+            android:src="@drawable/ic_no_banana"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/banana1"
+            android:layout_margin="16dp"
+            android:scaleType="fitCenter"
+            android:layout_gravity="center_vertical" />
+        <ImageView
+            android:src="@drawable/ic_no_banana"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/banana2"
+            android:layout_margin="16dp"
+            android:scaleType="fitCenter"
+            android:layout_gravity="center_vertical" />
+        <ImageView
+            android:src="@drawable/ic_no_banana"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/banana3"
+            android:layout_margin="16dp"
+            android:scaleType="fitCenter"
+            android:layout_gravity="center_vertical" />
+    </LinearLayout>
+</LinearLayout>
