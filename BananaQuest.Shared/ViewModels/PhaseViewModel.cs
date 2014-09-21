@@ -12,12 +12,18 @@ namespace BananaQuest.Shared
 		const string PhaseUrl = "http://refractored.com/phase{0}.json";
 		public async Task<Phase> GetPhaseAsync()
 		{
+
+		  
+
+
 			var url = string.Format (PhaseUrl, phaseNumber);
 			var client = new HttpClient ();
 
 			var result = await client.GetStringAsync (url);
 
 			Phase =  JsonConvert.DeserializeObject<Phase> (result);
+
+			var phaseJson = JsonConvert.SerializeObject (phase);
 			return phase;
 		}
 
@@ -26,7 +32,6 @@ namespace BananaQuest.Shared
 		/// </summary>
 		/// <returns><c>true</c>, if banana was checked, <c>false</c> otherwise.</returns>
 		/// <param name="major">Major number of the beacon.</param>
-		/// <param name="minor">Minor number of the beacon.</param>
 		public bool CheckBanana(int major, int minor)
 		{
 			if (phase == null)
@@ -35,16 +40,16 @@ namespace BananaQuest.Shared
 			if (major != Phase.Major)
 				return false;
 				
-			foreach (Banana banana in Phase.HiddenBananas) {
-				if (banana.Found)
-					continue;
+			if (phase.HiddenBanana.Found)
+				return true;
 
-				if (banana.Minor == minor) {
-					banana.Found = true;
-					if (PhaseComplete)
-						OnPropertyChanged ("PhaseComplete");
-					return true;
-				}
+			if (phase.HiddenBanana.Minor == minor) {
+				phase.HiddenBanana.Found = true;
+
+				if (PhaseComplete)
+					OnPropertyChanged ("PhaseComplete");
+
+				return true;
 			}
 
 			return false;
@@ -78,12 +83,7 @@ namespace BananaQuest.Shared
 				if (Phase == null)
 					return false;
 
-				foreach (Banana banana in Phase.HiddenBananas) {
-					if (!banana.Found)
-						return false;
-				}
-
-				return true;
+				return phase.HiddenBanana.Found;
 			}
 		}
 
@@ -100,6 +100,22 @@ namespace BananaQuest.Shared
 
 			PropertyChanged (this, new PropertyChangedEventArgs (propertyName));
 		}
+
+
+		/*
+		 * phase = new Phase { UUID = "B9407F30-F5F8-466E-AFF9-25556B57FE6D", Clue = new Clue {
+					Image = "http://www.refractored.com/Tiburon.jpg", Message = "This town reaches south into the San Francisco Bay and also the Microsoft Office"
+				},
+				HiddenBanana = new Banana {
+					Found = false,
+					Minor = 1
+				},
+				Major = 255,
+				Prize = new Prize{
+					Image = "http://blog.xamarin.com/wp-content/uploads/2014/04/monkey-300x300.png",
+					Message = "You won an amazing prize! Go claim it now!"
+				}
+			};*/
 	}
 }
 

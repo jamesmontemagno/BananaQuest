@@ -20,14 +20,6 @@ namespace BananaQuestiOS
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIImageView Banana2 { get; set; }
-
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIImageView Banana3 { get; set; }
-
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
 		UIImageView MainImage { get; set; }
 
 		[Outlet]
@@ -43,14 +35,6 @@ namespace BananaQuestiOS
 			if (Banana1 != null) {
 				Banana1.Dispose ();
 				Banana1 = null;
-			}
-			if (Banana2 != null) {
-				Banana2.Dispose ();
-				Banana2 = null;
-			}
-			if (Banana3 != null) {
-				Banana3.Dispose ();
-				Banana3 = null;
 			}
 			if (MainImage != null) {
 				MainImage.Dispose ();

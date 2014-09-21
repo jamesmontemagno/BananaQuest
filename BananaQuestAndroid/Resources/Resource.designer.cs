@@ -24,10 +24,6 @@ namespace BananaQuestAndroid
 			global::Android.Runtime.ResourceIdManager.UpdateIdValues();
 		}
 		
-		public static void UpdateIdValues()
-		{
-		}
-		
 		public partial class Attribute
 		{
 			
@@ -164,12 +160,6 @@ namespace BananaQuestAndroid
 			
 			// aapt resource value: 0x7f060003
 			public const int banana1 = 2131099651;
-			
-			// aapt resource value: 0x7f060004
-			public const int banana2 = 2131099652;
-			
-			// aapt resource value: 0x7f060005
-			public const int banana3 = 2131099653;
 			
 			// aapt resource value: 0x7f060001
 			public const int main_image = 2131099649;

@@ -34,8 +34,6 @@ namespace BeaconsAndroid
 			viewModel.PropertyChanged += HandlePropertyChanged;
 
 			Banana1 = FindViewById<ImageView> (Resource.Id.banana1);
-			Banana2 = FindViewById<ImageView> (Resource.Id.banana2);
-			Banana3 = FindViewById<ImageView> (Resource.Id.banana3);
 			MainImage = FindViewById<ImageView> (Resource.Id.main_image);
 			MainText = FindViewById<TextView> (Resource.Id.main_text);
 			progressBar = FindViewById<ProgressBar> (Resource.Id.progressBar);
@@ -87,22 +85,8 @@ namespace BeaconsAndroid
 				null);
 
 			Banana1.SetImageResource (Resource.Drawable.ic_no_banana);
-			Banana2.SetImageResource (Resource.Drawable.ic_no_banana);
-			Banana3.SetImageResource (Resource.Drawable.ic_no_banana);
 
-			for (int i = 0; i < viewModel.Phase.HiddenBananas.Count; i++) {
-				switch (i) {
-				case 0:
-					Banana1.Visibility = ViewStates.Visible;
-					break;
-				case 1:
-					Banana2.Visibility = ViewStates.Visible;
-					break;
-				case 2:
-					Banana3.Visibility = ViewStates.Visible;
-					break;
-				}
-			}
+			Banana1.Visibility = ViewStates.Visible;	
 
 			RunOnUiThread (() => {
 				MainImage.SetImageFromUrlAsync (viewModel.Phase.Clue.Image);
@@ -115,22 +99,10 @@ namespace BeaconsAndroid
 		void UpdateBananas()
 		{
 			RunOnUiThread (() => {
-				for (int i = 0; i < viewModel.Phase.HiddenBananas.Count; i++) {
-					if(!viewModel.Phase.HiddenBananas[i].Found)
-						continue;
 
-					switch (i) {
-					case 0:
+					if(viewModel.Phase.HiddenBanana.Found)
 						Banana1.SetImageResource (Resource.Drawable.ic_banana);
-						break;
-					case 1:
-						Banana2.SetImageResource (Resource.Drawable.ic_banana);
-						break;
-					case 2:
-						Banana3.SetImageResource (Resource.Drawable.ic_banana);
-						break;
-					}
-				}
+
 			});
 		}
 

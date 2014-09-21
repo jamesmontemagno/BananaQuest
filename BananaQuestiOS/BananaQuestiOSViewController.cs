@@ -39,6 +39,10 @@ namespace BananaQuestiOS
 			viewModel.PropertyChanged += HandlePropertyChanged;
 
 			manager = new CLLocationManager ();
+
+			if(UIDevice.CurrentDevice.CheckSystemVersion (8, 0))
+				manager.RequestAlwaysAuthorization ();
+
 			manager.DidRangeBeacons += (sender, e) => {
 				if(e.Beacons == null)
 					return;
@@ -68,25 +72,7 @@ namespace BananaQuestiOS
 				(ushort)viewModel.Phase.Major, beaconId); 
 
 			Banana1.Image = noBanana;
-			Banana2.Image = noBanana;
-			Banana3.Image = noBanana;
-			Banana1.Hidden = true;
-			Banana2.Hidden = true;
-			Banana3.Hidden = true;
-
-			for (int i = 0; i < viewModel.Phase.HiddenBananas.Count; i++) {
-				switch (i) {
-				case 0:
-					Banana1.Hidden = false;
-					break;
-				case 1:
-					Banana2.Hidden = false;
-					break;
-				case 2:
-					Banana3.Hidden = false;
-					break;
-				}
-			}
+			Banana1.Hidden = false;
 
 			InvokeOnMainThread (() => {
 				MainImage.LoadUrl (viewModel.Phase.Clue.Image);
@@ -99,22 +85,9 @@ namespace BananaQuestiOS
 		void UpdateBananas()
 		{
 			InvokeOnMainThread (() => {
-				for (int i = 0; i < viewModel.Phase.HiddenBananas.Count; i++) {
-					if(!viewModel.Phase.HiddenBananas[i].Found)
-						continue;
 
-					switch (i) {
-					case 0:
-						Banana1.Image = banana;
-						break;
-					case 1:
-						Banana2.Image = banana;
-						break;
-					case 2:
-						Banana3.Image = banana;
-						break;
-					}
-				}
+				if(viewModel.Phase.HiddenBanana.Found)
+					Banana1.Image = banana;
 			});
 		}
 
